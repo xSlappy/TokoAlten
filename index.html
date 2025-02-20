@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasa Joki & Penjualan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #121212; color: white; font-family: Arial, sans-serif; }
+        .menu, .product-detail { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.9); text-align: center; padding-top: 5rem; transition: all 0.5s ease; }
+        .menu.active, .product-detail.active { display: block; }
+        .product-image { max-width: 100%; height: auto; border-radius: 8px; }
+        .product-card {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        .product-card img {
+            border-radius: 8px;
+        }
+        .product-title {
+            font-size: 1.5rem;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .product-price {
+            font-size: 1.25rem;
+            color: #48BB78;
+            margin-top: 8px;
+        }
+        .product-detail-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /* Tombol Lihat Produk lebih modern */
+        .btn-modern {
+            background: linear-gradient(45deg, #6a1b9a, #8e24aa);
+            padding: 15px 30px;
+            color: white;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .btn-modern:hover {
+            background: linear-gradient(45deg, #ab47bc, #9c27b0);
+            transform: translateY(-5px);
+        }
+        .btn-modern:active {
+            transform: translateX(-10px); /* Efek dodge ke kiri saat tombol ditekan */
+        }
+        /* Efek tombol produk saat ditekan */
+        .product-card:active {
+            transform: translateX(-10px); /* Efek dodge ke kiri saat ditekan */
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-gray-900 text-white p-4 text-center text-2xl font-bold">
+        <img src="header-image.jpg" alt="Header" class="w-full h-32 object-cover">
+        Jasa Joki & Penjualan
+    </header>
+    <nav class="flex justify-center space-x-6 p-4 bg-gray-800">
+        <a href="#home" class="hover:text-blue-400">Home</a>
+        <a href="#about" class="hover:text-blue-400">Tentang</a>
+        <a href="#products" class="hover:text-blue-400">Produk</a>
+        <a href="#discord" class="hover:text-blue-400">Discord</a>
+    </nav>
+    
+    <section id="home" class="h-screen flex flex-col items-center justify-center text-center text-4xl font-bold">
+        <img src="D:\img\tes.gif" alt="Joki Termurah" class="w-1/2 h-auto mb-4">
+        Selamat Datang di Jasa Joki & Penjualan!
+    </section>
+
+    <img src="D:\img\gago.png" alt="Gambar Tambahan" class="w-1/3 h-auto mt-4 mx-auto">
+</section>
+    
+    <section id="about" class="h-screen flex items-center justify-center text-center text-2xl">
+        Kami memberikan layanan yang terbaik untuk customer serta admin kami selalu membalas anda jika ingin bertanya
+        apa aja si keungulan beli di sini? akun kalian aman , data kalian aman tidak seperti seller nakal yang hanya
+        mengambil data orang dari game lain menyimpang dari joki.
+    </section>
+    
+    <section id="products" class="h-screen flex items-center justify-center">
+        <button onclick="openMenu()" class="btn-modern">Lihat Produk</button>
+    </section>
+    
+    <section id="discord" class="h-screen flex items-center justify-center text-center">
+        <a href="#" class="bg-purple-600 px-6 py-3 text-xl rounded transition-all hover:bg-purple-700">Join Discord</a>
+    </section>
+    
+    <div id="productMenu" class="menu">
+        <h2 class="text-3xl font-bold text-white mb-8">Pilih Produk</h2>
+        <div class="grid grid-cols-3 gap-6 p-6">
+            <div class="product-card cursor-pointer" onclick="openProductDetail('Uang, 'Rp 5.000', 'z')">
+                <img src="z" alt="1M C$">
+                <div class="product-title">1M C$</div>
+                <div class="product-price">Rp 5.000</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('ikan', 'Rp 8.000', 'produk2.jpg')">
+                <img src="produk2.jpg" alt="SSBM Phantom Megalodon">
+                <div class="product-title">SSBM Phantom Megalodon</div>
+                <div class="product-price">Rp 8.000</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('ikan', 'Rp 6.000', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="SS Nessie">
+                <div class="product-title">SS Nessie</div>
+                <div class="product-price">Rp 6.000</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('ikan', 'Rp 6.500', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="SS Phantom Normal">
+                <div class="product-title">SS Phantom Normal</div>
+                <div class="product-price">Rp 6.500</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('Rod', 'Rp 12.000', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="Rod Of Eternal King">
+                <div class="product-title">Open ROTEK</div>
+                <div class="product-price">Rp 12.000</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('island', 'Rp 20.000', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="Atlantis">
+                <div class="product-title">Open Puzzle Atlantis</div>
+                <div class="product-price">Rp 20.000</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('island', 'Rp 9.000', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="Open Craft ROD">
+                <div class="product-title">Open Tempat Craft ROD</div>
+                <div class="product-price">Rp 9.000</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('Relic', 'Rp 750', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="Exalted Relic">
+                <div class="product-title">Exalted Relic</div>
+                <div class="product-price">Rp 750/p</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('Island', 'Rp 9,000', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="Open ROTD">
+                <div class="product-title">Open ROTD</div>
+                <div class="product-price">Rp 9.000</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('Leveling', 'Rp 250', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="Level 1-250">
+                <div class="product-title">Level</div>
+                <div class="product-price">Rp 250/lvl</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('Leveling', 'Rp 500', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="Open ROTD">
+                <div class="product-title">Level 250-500</div>
+                <div class="product-price">Rp 500/lvl</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('Leveling', 'Rp 750', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="Level 500-750">
+                <div class="product-title">Level 500-750</div>
+                <div class="product-price">Rp 750/lv</div>
+            </div>
+            <div class="product-card cursor-pointer" onclick="openProductDetail('Leveling', 'Rp 1,000', 'produk3.jpg')">
+                <img src="produk3.jpg" alt="750-1000">
+                <div class="product-title">750-Max</div>
+                <div class="product-price">Rp 1k/lvl</div>
+            </div>
+            <!-- Repeat for other products -->
+        </div>
+        <button onclick="closeMenu()" class="bg-red-600 px-6 py-3 text-xl rounded mt-6 transition-all hover:bg-red-700">Kembali</button>
+    </div>
+    
+    <div id="productDetail" class="product-detail">
+        <div class="product-detail-content">
+            <h2 id="productTitle" class="text-3xl font-bold text-white"></h2>
+            <img id="productImage" src="" alt="Produk" class="product-image">
+            <p id="productPrice" class="text-2xl text-white mt-4"></p>
+            <button onclick="closeProductDetail()" class="bg-red-600 px-6 py-3 text-xl rounded mt-6 transition-all hover:bg-red-700">Kembali</button>
+        </div>
+    </div>
+    
+    <script>
+        function openMenu() { document.getElementById("productMenu").classList.add("active"); }
+        function closeMenu() { document.getElementById("productMenu").classList.remove("active"); }
+        function openProductDetail(title, price, image) {
+            document.getElementById("productTitle").innerText = title;
+            document.getElementById("productPrice").innerText = price;
+            document.getElementById("productImage").src = image;
+            document.getElementById("productDetail").classList.add("active");
+        }
+        function closeProductDetail() { document.getElementById("productDetail").classList.remove("active"); }
+    </script>
+</body>
+</html>
